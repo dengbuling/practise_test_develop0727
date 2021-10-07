@@ -136,10 +136,10 @@ class TestCase(BaseViewSet):
     @action(methods=["get"], detail=False, url_path="tasktime")
     def tasktime_cases(self, request, *args, **kwargs):
         ntime = datetime.datetime.now()
-        ctime = datetime.datetime.utcnow()
+        utctime = datetime.datetime.utcnow()
         # 本地时间转换为utc时间
         cctime = datetime.datetime.utcfromtimestamp(ntime.timestamp())
-        targettime = ctime + datetime.timedelta(seconds=3)
+        targettime = utctime + datetime.timedelta(seconds=3)
         # 定时执行定时任务
         print(targettime)
         result = tasks.x1.apply_async(args=[2, 2], eta=targettime)
