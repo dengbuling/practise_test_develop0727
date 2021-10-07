@@ -136,24 +136,16 @@ class TestCase(BaseViewSet):
         print("go")
         return self.response(data=result.id)
 
-
-
     @action(methods=["get"], detail=False, url_path="tasktime")
     def tasktime_cases(self, request, *args, **kwargs):
-
         ntime = datetime.datetime.now()
         ctime = datetime.datetime.utcnow()
-
-
         # 本地时间转换为utc时间
         cctime = datetime.datetime.utcfromtimestamp(ntime.timestamp())
         targettime = ctime + datetime.timedelta(seconds=3)
         # 定时执行
-        time5 = "2021-10-06 09:08:00"
         print(targettime)
-
-
-        result = tasks.x1.apply_async(args=[2,2],eta=time5)
+        result = tasks.x1.apply_async(args=[2, 2], eta=targettime)
         return self.response(data=result.id)
 
 
@@ -168,7 +160,7 @@ class TestCase(BaseViewSet):
         print(result1.get())
         # 遗忘数据
         # result1.forget()
-        # 停止定时任务
+        # 停止定时任务git config --system --unset credential.helper
         # result1.revoke()
         # 一般情况下
         # 如果执行成功
@@ -178,7 +170,6 @@ class TestCase(BaseViewSet):
         # elif result1.failed():
         #     pass
         return self.response(data=result1.get())
-
 
 
 
