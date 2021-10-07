@@ -127,13 +127,10 @@ class TestCase(BaseViewSet):
         UnittestCase.main()
         return self.response(data="success")
 
-
     @action(methods=["get"], detail=False, url_path="task")
     def task_cases(self, request, *args, **kwargs):
-        print("come")
         # 立即执行
-        result = tasks.x1.delay(2,2)
-        print("go")
+        result = tasks.x1.delay(2, 2)
         return self.response(data=result.id)
 
     @action(methods=["get"], detail=False, url_path="tasktime")
@@ -143,7 +140,7 @@ class TestCase(BaseViewSet):
         # 本地时间转换为utc时间
         cctime = datetime.datetime.utcfromtimestamp(ntime.timestamp())
         targettime = ctime + datetime.timedelta(seconds=3)
-        # 定时执行
+        # 定时执行定时任务
         print(targettime)
         result = tasks.x1.apply_async(args=[2, 2], eta=targettime)
         return self.response(data=result.id)
