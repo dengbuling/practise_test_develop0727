@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite errors="0" failures="0" file="common/TestCase/UnittestCase.py"
+               name="common.TestCase.UnittestCase.MyTest01-20210927144139" skipped="0" tests="6" time="1.191"
+               timestamp="2021-09-27T14:41:40">
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="50"
+                  name="test_case01" time="0.018" timestamp="2021-09-27T14:41:39">
+            <system-out>
+                <![CDATA[执行测试用例01
+]]>            </system-out>
+        </testcase>
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="54"
+                  name="test_case02" time="0.001" timestamp="2021-09-27T14:41:39">
+            <system-out>
+                <![CDATA[执行测试用例02
+]]>            </system-out>
+        </testcase>
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="58"
+                  name="test_case03" time="0.001" timestamp="2021-09-27T14:41:39">
+            <system-out>
+                <![CDATA[执行测试用例03
+]]>            </system-out>
+        </testcase>
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="62"
+                  name="test_case04" time="0.003" timestamp="2021-09-27T14:41:39">
+            <system-out>
+                <![CDATA[执行测试用例04
+]]>            </system-out>
+        </testcase>
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="37"
+                  name="test_case_00001_case1" time="0.670" timestamp="2021-09-27T14:41:40">
+            <!--test_case_00001_case1-->
+        </testcase>
+        <testcase classname="common.TestCase.UnittestCase.MyTest01" file="common/TestCase/UnittestCase.py" line="37"
+                  name="test_case_00002_case2" time="0.499" timestamp="2021-09-27T14:41:40">
+            <!--test_case_00002_case2-->
+        </testcase>
+    </testsuite>
+</testsuites>

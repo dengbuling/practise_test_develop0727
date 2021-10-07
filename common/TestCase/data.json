@@ -1,0 +1,12 @@
+{
+  "case1": {
+    "url": "http://httpbin.org/post",
+    "method": "POST",
+    "params_body": "{'key1': 'value1', 'key2': 'value2'}"
+  },
+  "case2": {
+    "url": "http://httpbin.org/get",
+    "method": "GET",
+    "params_body": "{'key1': 'value1', 'key2': 'value2'}"
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        .c1{
+            background:red;
+        }
+        .hobby{
+            background:grey;
+            padding:20px;
+            position:fixed;
+            right:200px;
+            top:100px;
+            z-index:2;
+        }
+        .input{
+            height: 200px;
+            width: 50%;
+        }
+        .img11{
+            background:url(pic_bulbon.gif) no-repeat;
+            width:200px;
+            height:200px;
+            border: 5px solid black;
+            /**设置默认不显示**/
+            /**display:none;**/
+        }
+        .bac{
+            width: 100%;
+            height: 400px;
+            background: black;
+            z-index: 3;
+            opacity:1;
+        }
+        .bac10{
+            width: 50%;
+            height: 200px;
+            background: red;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="bac">
+            <div class="bac10"></div>
+        </div>
+        <form action="http://127.0.0.1:8000/user/Login/" method="post">
+            question<input type="text" name="question">
+            <br><br>
+            gender<input type="radio" name="gender" value="男">man<input type="radio" name="gender" value="nv">woman
+            <br><br>
+            <div class="hobby">
+                <span>hobby:</span>
+                <br><br>
+                <input type="checkbox" name="hobby" value="power">power<br>
+                <input type="checkbox" name="hobby" value="money">money<br>
+                <input type="checkbox" name="hobby" value="boy">boy<br>
+                <input type="checkbox" name="hobby" value="girl">girl<br>
+            </div>
+            <br><br>
+            <div>
+                <p class="img11"></p>
+            </div>
+            <div>
+                <p>choice</p>
+                <select>
+                    <option>apple</option>
+                    <option>juce</option>
+                </select>
+            </div>
+            <br><br>
+            <textarea class="input">问题写在这里...</textarea>
+            <br><br>
+            submit<input type="submit" name="submit">
+        </form>
+    </div>
+
+</body>
+</html>

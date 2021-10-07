@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+
+</head>
+<body>
+<form action="http://127.0.0.1:8000/user/Login/" method="POST" id="f1">
+    <p id="nnn">
+        user_name<input type="text" name="user_name" id="user_name">{{ user_response.data.user_name.0 }}
+        <span></span>
+    </p>
+    <p>
+        user_password<input type="password" name="user_password" id="user_password">{{ user_response.data.user_password.0 }}
+    </p>
+    <p>
+        user_mobile<input type="text" name="user_mobile">{{ user_response.data.user_mobile.0 }}
+    </p>
+    <p>
+        user_gender<input type="text" name="user_gender">{{ user_response.data.user_gender.0 }}
+    </p>
+    <p>
+        <input type="submit" name="password">submit
+    </p>
+    <input type="file" name="file" id="file">
+
+    <br>
+    <a onclick="submitForm()">submit</a>
+
+    <br>
+
+    <div id="ff3">
+
+
+    </div>
+    <div id="myDiv"></div>
+</form>
+<script src="/static/js/jquery.js/"></script>
+<script src="/static/js/Login.js/"></script>
+
+</body>
+</html>
