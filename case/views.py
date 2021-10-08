@@ -10,8 +10,30 @@ from common.TestCase import UnittestCase
 from celery.result import AsyncResult
 from practise_test_develop0727 import celery_app
 import datetime
+from django import forms
+from django.shortcuts import render
+from question.models import User
+from tools.SMS_context import send_sms_single
 
 
+class CaseForm(forms.ModelForm):
+    user_name = forms.CharField(label="用户名")
+    # 设置密码密文输入
+    user_password = forms.CharField(label="密码", widget=forms.PasswordInput())
+    confirm_password = forms.CharField(label="确认密码", widget=forms.PasswordInput())
+    code = forms.CharField(label="验证码")
+    user_mobile = forms.CharField(label="手机号")
+
+    class Meta:
+        model = User
+        fields = ['user_name', 'user_password', 'confirm_password', 'user_mobile', 'code']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # 获取字段名称和字段名称后面的对象
+        for name, field in self.fields.items():
+            field.widget.attrs["class"] = 'form-control'
+            field.widget.attrs["placeholder"] = f'请输入{field.label}'
 
 
 class TestCase(BaseViewSet):
@@ -131,6 +153,8 @@ class TestCase(BaseViewSet):
     def task_cases(self, request, *args, **kwargs):
         # 立即执行
         result = tasks.x1.delay(2, 2)
+        # 任务队列发送短信
+        # tasks.x3.delay('18642662530', 1149390)
         return self.response(data=result.id)
 
     @action(methods=["get"], detail=False, url_path="tasktime")
@@ -139,10 +163,12 @@ class TestCase(BaseViewSet):
         utctime = datetime.datetime.utcnow()
         # 本地时间转换为utc时间
         cctime = datetime.datetime.utcfromtimestamp(ntime.timestamp())
-        targettime = utctime + datetime.timedelta(seconds=3)
+        targettime = utctime + datetime.timedelta(seconds=5)
         # 定时执行定时任务
         print(targettime)
         result = tasks.x1.apply_async(args=[2, 2], eta=targettime)
+        # 定时任务发送短信
+        # tasks.x3.apply_async(args=['18642662530', 1149390], eta=targettime)
         return self.response(data=result.id)
 
 
@@ -168,7 +194,18 @@ class TestCase(BaseViewSet):
         #     pass
         return self.response(data=result1.get())
 
+    @action(methods=["get"], detail=False, url_path="register")
+    def register(self, request, *args, **kwargs):
+        form = CaseForm()
+        return render(request, 'case/register.html', {'form': form})
 
-
-
-
+    @action(methods=["get"], detail=False, url_path="message")
+    def message(self, request, *args, **kwargs):
+        import random
+        code = random.randrange(1000,9999)
+        res = send_sms_single('1864266253',1149390,[code,3,])
+        print(res)
+        if res['result'] == 0:
+            return self.response(data=res['errmsg'])
+        else:
+            return self.response(data=res['errmsg'])
